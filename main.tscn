@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://wn78g8pnix4n"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_x56g7"]
+[ext_resource type="Texture2D" uid="uid://6ivhakynkb0b" path="res://texture_01.png" id="2_w856o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_33lr6"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_i26ht"]
+sky_material = SubResource("ProceduralSkyMaterial_33lr6")
+
+[sub_resource type="Environment" id="Environment_6jcwg"]
+background_mode = 2
+sky = SubResource("Sky_i26ht")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnyut"]
+albedo_texture = ExtResource("2_w856o")
+uv1_scale = Vector3(5, 5, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7anh7"]
+material = SubResource("StandardMaterial3D_rnyut")
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vuwlj"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_x56g7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0.41048, -0.330227, 0.849974, -0.285493, 0.838719, 0.463728, 0, 8.24181, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6jcwg")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_7anh7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_vuwlj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.988172, 0.153348, 0, -0.153348, 0.988172, 0, 2.90226, 6.13898)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.29908, -9.28236)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://b81fcvbv5070"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_7p7iu"]
+[ext_resource type="PackedScene" uid="uid://bimgb4x5wupd8" path="res://health_bar_3d.tscn" id="2_4cwlh"]
+[ext_resource type="Texture2D" uid="uid://c15nk27an6vus" path="res://texture_08.png" id="2_qachn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5vl0"]
+albedo_texture = ExtResource("2_qachn")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8rvl0"]
+material = SubResource("StandardMaterial3D_y5vl0")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_osx4d"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d874s"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Mob" type="CharacterBody3D"]
+script = ExtResource("1_7p7iu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_8rvl0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_osx4d")
+
+[node name="HealthBar3D" parent="." instance=ExtResource("2_4cwlh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47168, 0)
+texture = SubResource("ViewportTexture_d874s")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
