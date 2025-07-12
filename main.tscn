@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://wn78g8pnix4n"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_x56g7"]
+[ext_resource type="Script" uid="uid://bqyv41rvkia5e" path="res://main.gd" id="1_x56g7"]
 [ext_resource type="Texture2D" uid="uid://6ivhakynkb0b" path="res://texture_01.png" id="2_w856o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_33lr6"]

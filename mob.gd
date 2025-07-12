@@ -15,7 +15,7 @@ func _physics_process(delta):
 		queue_free()
 
 
-func _on_input_event(_camera, event, _pos, _normal, _shape_idx):
+func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		health -= 1
 		$HealthBar3D.update_health(health, max_health)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cm438a03jv8pl"]
 
 [ext_resource type="Texture2D" uid="uid://cfd3lh0ecmi4i" path="res://barHorizontal_green_mid 200.png" id="1_dvk8f"]
-[ext_resource type="Script" path="res://health_bar_2d.gd" id="2_evjxs"]
+[ext_resource type="Script" uid="uid://b0jtxmr336wfl" path="res://health_bar_2d.gd" id="2_evjxs"]
 
 [node name="HealthBar2D" type="TextureProgressBar"]
 offset_right = 40.0
